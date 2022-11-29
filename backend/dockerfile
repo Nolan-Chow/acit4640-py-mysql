@@ -1,0 +1,18 @@
+FROM python:3
+
+RUN apt-get update -y && \
+    apt-get install -y python3 python3-pip gettext-base
+
+RUN useradd -m -d /backend backend
+
+USER backend
+WORKDIR /backend
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /backend/requirements.txt
+
+RUN pip3 install --user -r requirements.txt
+
+COPY --chown=backend . /backend
+
+CMD [ "/bin/bash", "/backend/startup.sh" ]
