@@ -28,3 +28,9 @@ jobs:
           context: frontend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest 
+      - name: Build and push data
+        uses: docker/build-push-action@v3
+        with:
+          context: data
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/data:latest 
