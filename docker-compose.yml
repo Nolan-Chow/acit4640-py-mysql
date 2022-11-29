@@ -9,6 +9,7 @@ services:
   backend:
     image: nolan2002/backend:latest
     container_name: backend
+    user: backend
     env_file:
       - backend.env
     depends_on:
@@ -16,6 +17,7 @@ services:
   data:
     image: nolan2002/data:latest
     container_name: data
+    user: root
     env_file:
       - data.env
     depends_on:
